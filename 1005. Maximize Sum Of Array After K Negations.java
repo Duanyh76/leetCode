@@ -16,3 +16,15 @@ class Solution {
         return sum;
     }
 }
+
+class Solution {
+    public int largestSumAfterKNegations(int[] A, int K) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        Arrays.stream(A).forEach(a -> queue.add(a));
+        while (K > 0) {
+            K--;
+            queue.add(queue.poll() * -1);
+        }
+        return queue.stream().mapToInt(a -> a).sum();
+    }
+}
