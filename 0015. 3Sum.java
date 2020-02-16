@@ -50,3 +50,38 @@ class Solution {
         return false;
     }
 }
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> result = new ArrayList();
+        Arrays.sort(nums);
+        int len = nums.length;
+        for (int index = 0; index < len - 2; index++) {
+            if (index == 0 || nums[index] != nums[index - 1]) {
+                int target = -1 * nums[index];
+                int midIndex = index + 1;
+                int endIndex = len - 1;
+                while (midIndex < endIndex) {
+                    int sum = nums[midIndex] + nums[endIndex];
+                    if (sum == target) {
+                        List<Integer> list = Arrays.asList(nums[index], nums[midIndex], nums[endIndex]);
+                        result.add(list);
+                        while (midIndex < endIndex && nums[midIndex] == nums[midIndex + 1]) {
+                            midIndex++;
+                        }
+                        while (midIndex < endIndex && nums[endIndex] == nums[endIndex - 1]) {
+                            endIndex--;
+                        }
+                        midIndex++;
+                        endIndex--;
+                    } else if (sum < target) {
+                        midIndex++;
+                    } else {
+                        endIndex--;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+}
