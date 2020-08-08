@@ -23,10 +23,6 @@ class Solution {
                 records.put(key, value);
             }
         }
-        List<List<String>> list = new ArrayList<>();
-        for(Map.Entry<String, List<String>> entry: records.entrySet()){
-            list.add(entry.getValue());
-        }
-        return list;
+        return new ArrayList<>(records.values());
     }
 }
